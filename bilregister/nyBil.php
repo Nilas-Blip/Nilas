@@ -15,12 +15,12 @@ include 'sjekkOmInnlogget.php';
             <?php include 'meny.php'; ?>
         </nav>
     </header>
-    <main class="main-content"><h1>Ny eier</h1>
+    <main class="main-content"><h1>Ny bil</h1>
     <form action="" method="post">
     <table style="border: 1px solid black; padding: 140px;">
         <tr>
             <td>
-                    <label for="RegNr">Registreringsnummer:</label>
+                    <label for="RegNr">RegNr:</label>
                     <input type="text" name="RegNr" id="RegNr" required>
             </td>
             <td>
