@@ -40,6 +40,12 @@ include 'sjekkOmInnlogget.php';
             </td>
         </tr>
         <tr>
+            <td>
+                    <label for="Fnr">Fødselsnummer:</label>
+                    <input type="text" name="Fnr" id="Fnr" required><br>
+            </td>
+        </tr>
+        <tr>
             <td colspan="2" style="text-align: right;">
                     <button type="submit" name="leggTil">Legg til</button>
             </td>
@@ -49,23 +55,32 @@ include 'sjekkOmInnlogget.php';
 
     <?php
   
-  // Sjekk om skjemaet har blitt sendt inn
+  // Sjekk om skjemaet har blitt sendt inn+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Hent brukernavn og passord fra skjemaet
     $innsendtRegNr = $_POST['RegNr'];  
     $innsendtType = $_POST['Type'];  
     $innsendtMerke = $_POST['Merke'];  
     $innsendtFarge = $_POST['Farge'];  
+    $innsendtFnr = $_POST['Fnr'];
+
 
 
     // Lag en SQL-spørring
-    $sql = "INSERT INTO biler (RegNr, Type, Merke, Farge, ) VALUES ('$innsendtRegNr', '$innsendtType', '$innsendtMerke', '$innsendtFarge')";
+    $sql = "INSERT INTO biler (RegNr, Type, Merke, Farge, Fnr) VALUES ('$innsendtRegNr', '$innsendtType', '$innsendtMerke', '$innsendtFarge', '$innsendtFnr')";
     // Gjør spørringen klar
     $stmt = $conn->prepare($sql);
 
     // Kjør spørringen
-    $stmt->execute();
+    try{
+        $stmt->execute();
+    } catch {
+        echo"Du må skrive inn ett gyldig fødsels nummer(Fnr) som samsvarer med en eier";
+    }
     header('Location: bilregister.php');
+}
+
+    
 }
   
   ?>

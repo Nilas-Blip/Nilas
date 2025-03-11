@@ -1,3 +1,7 @@
+<?php 
+    include 'kobleDB.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,22 +12,9 @@
     <link rel="stylesheet" href="kjæledyr.css">
 </head>
 <body>
-    <?php
-    $servername = "localhost";
-    $database = "kjæledyr";
-    $dbUser = "root";
-    $dbPassord = "";
- 
-    // prøver å åpne en connection med databsen
-    try{
-        $conn = new PDO("mysql:host=$servername;dbname=$database;charset=utf8", $dbUser, $dbPassord);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch(PDOException $e){
-        die("Kunne ikke koble til databasen: " . $e->getMessage());
-    };
-    ?>
+
     <header>
-        <nav>
+        <nav>www
             <?php include 'meny.php'; ?>
         </nav>
     </header>
@@ -49,6 +40,12 @@
                     echo "<td>" . $rader[$i]['TypeDyr'] . "</td>";
                     echo "<td>" . $rader[$i]['RaseDyr'] . "</td>";
                     echo "<td>" . $rader[$i]['EierNavn'] . "</td>";
+                    echo "<td> 
+                        <form action='slettsyr.php' method='$POST'>
+                            <input type='hidden' name='DyreID'". $rader[$i]['DyreID'] . "'>
+                            <butt
+                        </form>
+                        </td">
                 echo "</tr>";
             }
             echo"</table>";
