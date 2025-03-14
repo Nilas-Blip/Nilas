@@ -72,16 +72,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $conn->prepare($sql);
 
     // Kjør spørringen
-    try{
-        $stmt->execute();
-    } catch {
-        echo"Du må skrive inn ett gyldig fødsels nummer(Fnr) som samsvarer med en eier";
-    }
+
+    $stmt->execute();
+  
     header('Location: bilregister.php');
 }
 
     
-}
+
   
   ?>
     </main>

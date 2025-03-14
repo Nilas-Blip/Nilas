@@ -34,15 +34,22 @@ include 'sjekkOmInnlogget.php';
         echo "<table>";
             echo "<tr><th>RegNR</th><th>Type</th><th>Merke</th><th>Farge</th><th>Fnr</th></tr>";
             
-            for($i = 0; $i < count($rader); $i++) {
+            foreach($rader as $rad) {
                 echo "<tr>";
-                    echo "<td>" . $rader[$i]['RegNr'] . "</td>";
-                    echo "<td>" . $rader[$i]['Type'] . "</td>";
-                    echo "<td>" . $rader[$i]['Merke'] . "</td>";
-                    echo "<td>" . $rader[$i]['Farge'] . "</td>";
-                    echo "<td>" . $rader[$i]['Fnr'] . "</td>";
+                    echo "<td>" . htmlspecialchars($rad['RegNr']) . "</td>";
+                    echo "<td>" . htmlspecialchars($rad['Type']) . "</td>";
+                    echo "<td>" . htmlspecialchars($rad['Merke']) . "</td>";
+                    echo "<td>" . htmlspecialchars($rad['Farge']) . "</td>";
+                    echo "<td>" . htmlspecialchars($rad['Fnr']) . "</td>";
+                    echo"<td>
+                        <form action='slettBil.php' method='POST' onsubmit='return confirm(\"Er du sikker på at du vil slette " . htmlspecialchars($rad['RegNr']) . "?\");'>
+                            <input type='hidden' name='RegNr' value='" . $rad['RegNr'] . "'>
+                            <button type='submit'>Slett</button>
+                        </form>
+                        </td>";
                 echo "</tr>";
             }  
+
             echo "</table>";  
         ?>
     </main>
