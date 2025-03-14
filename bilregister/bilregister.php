@@ -47,6 +47,7 @@ include 'sjekkOmInnlogget.php';
                             <button type='submit'>Slett</button>
                         </form>
                         </td>";
+                    echo "<td><a href='endreBil.php?RegNr=" . urlencode($rad['RegNr']) . "'><button>Endre</button></a></td>";
                 echo "</tr>";
             }  
 
